@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Graph
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            LinkedList<int>[] arr=new LinkedList<int>[100];
+            for(int i=0;i<4;i++)
+            {
+                arr[i] = new LinkedList<int>();
+            }
+            arr[0].AddFirst(1);
+            arr[0].AddLast(2);
+            arr[1].AddFirst(2);
+            arr[2].AddFirst(0);
+            arr[2].AddLast(3);
+            arr[3].AddFirst(3);
+            bool[] visited = new bool[10];
+            Console.WriteLine("Enter the node you want to traverse from");
+            int n = int.Parse(Console.ReadLine());
+            visited[n] = true;
+            Queue<int> vis = new Queue<int>();
+            vis.Enqueue(n);
+            
+            while(vis.Count!=0)
+            {
+                n = vis.Dequeue();
+                Console.Write(n);
+                int j = 0;
+                foreach(var i in arr[n])
+                {
+                    if(!visited[i])
+                    {
+                        vis.Enqueue(i);
+                        visited[i] = true;
+                    }
+                }
+            
+            }
+           
+            Console.ReadKey();
+        }
+    }
+}
